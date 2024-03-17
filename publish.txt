@@ -1,0 +1,35 @@
+```
+sui client publish --gas-budget 100000000 --skip-fetch-latest-git-deps --skip-dependency-verification
+```
+publish tx: 4DthBLn9mhVTy2egjtt8wwEjHAkZCz4Krgmv1e2ixZzm
+
+module:0x02a768193fa974263de440a050d1b8230c2a44325115f648e190393a15345db7
+dao(share):0x66ef1d3687332891340c00fb0402315fd979c4c08cf77dbacb6505012f3115b8
+initCoreCap:0xeccf092fce1d0c45ca2fe6b0445713304a46f4ce819a99c174b724dee8530f83
+CoreCap:0xb3f5570936980cf33174adc07709e13d4bcf27199b24a80fc224e19478f02aa0
+MemberCap:0xbec864bae11d75bbdd145a7681c4b8cdd74a4349c348fbde8230651a8b1756f2
+treasury:0xee8bafd02daec7b6a1f345a2e975d508124a687b8569fcbcb5738ae0dcfed592
+
+```
+sui client call --package 0x02a768193fa974263de440a050d1b8230c2a44325115f648e190393a15345db7 --module dao --function set_community_task --args 0xb3f5570936980cf33174adc07709e13d4bcf27199b24a80fc224e19478f02aa0 "Airdrop" 10 --gas-budget 100000000
+```
+tx  4rJFX75DtCu4KUTE6yGwjaXDJrcMJGEGc3yY32FYyMYy
+community_task: 0x204e596b00fbac52809bbbf5003c214b4934a2cec5fe84e3d3eb8559e15d16ed
+
+```
+sui client call --package 0x02a768193fa974263de440a050d1b8230c2a44325115f648e190393a15345db7 --module dao --function distribute_task_rewards --args 0xb3f5570936980cf33174adc07709e13d4bcf27199b24a80fc224e19478f02aa0 0x204e596b00fbac52809bbbf5003c214b4934a2cec5fe84e3d3eb8559e15d16ed 0x2fcdfe7c92fe670d267474fbd7aa89baef55c5f93b1953a9e82614c9abb7abc6 --gas-budget 100000000
+```
+
+tx  HqnN91hBoa4qD37G8ZLmyA8NbidfSYuf9omfyhsHFrZS
+rewardCap 0x871c6a586df2ef16c5c8a21af2457850d4e41bd7cac3198c020d3d164d7263ed
+
+```
+sui client call --package 0x02a768193fa974263de440a050d1b8230c2a44325115f648e190393a15345db7 --module dao --function claim_reward --args 0x871c6a586df2ef16c5c8a21af2457850d4e41bd7cac3198c020d3d164d7263ed 0xee8bafd02daec7b6a1f345a2e975d508124a687b8569fcbcb5738ae0dcfed592 --type-args 0x02a768193fa974263de440a050d1b8230c2a44325115f648e190393a15345db7::dao::DAO --gas-budget 100000000
+```
+
+Coin 0x5b5a7ac2ac2ae27552b7901787c1ef9687f0dc69895db9777760e5c10dade9c8
+Coin 0x9c612dde38b70256ebd304e4b5a6acbf025c71d7250a32d42aadc49029c47a2c
+
+```
+
+```
