@@ -1,80 +1,76 @@
-## 模块概述
+## Module Overview
 
-本仓库实现了一个简单的`dao` 模块，旨在实现一个去中心化自治组织（DAO），用于管理共享资金、社区任务、提案和投票等功能。
+This repository implements a simple `dao` module aimed at creating a decentralized autonomous organization (DAO) for managing shared funds, community tasks, proposals, and voting functionalities.
 
-### `dao` token
-**`dao`代币**
-`dao`使用了社区代币`dao`来治理社区，并进行社区激励，社区成员需要使用`dao`代币来发布提案，参与投票，从而参与社区治理，它的总供应在`dao`被创立时已经被固定，初始状况下dao代币将会全部锁在金库中。
-**如何获取dao代币？**
-`dao`组织会发布社区任务，设置一定的dao代币奖励，完成者可获得相应凭证，可以申请`dao`代币。
-社区成员发布的提案如果被接受，会根据提案的等级，分发一定的`dao`代币奖励。
+### `dao` Token
+**`dao` Token**
+The `dao` utilizes a community token called `dao` for governing the community and incentivizing participation. Community members need to use `dao` tokens to create proposals, participate in voting, and engage in community governance. The total supply of `dao` tokens is fixed when the `dao` is established, and initially, all `dao` tokens will be locked in the treasury.
+**How to Obtain `dao` Tokens?**
+The `dao` organization will publish community tasks with corresponding `dao` token rewards. Completing these tasks earns participants credentials that can be redeemed for `dao` tokens. Additionally, proposals submitted by community members may receive `dao` token rewards upon acceptance, depending on the proposal's level.
 
-### 成员角色
-**社区中有三种成员角色：** 
+### Member Roles
+**There are three types of member roles in the community:**
 
-#### 1.InitCoreMember
-`dao`组织的初始核心成员
-可以授权的角色：InitCoreMember,CoreMember。
-#### 2.CoreMember
-`dao`组织的核心成员:
-可授权的角色: Member.
-权利：
-1. 发布社区任务
-2. 分发任务奖励
-3. 授权普通社区成员
-4. 关闭提案
-5. 修改提案等级
-#### 3.Member
-`dao`组织的普通成员（需要持有dao后向CoreMember申请授权）
-权利：
-1. 发布提案
-2. 收获提案奖励
-3. 参与投票
+#### 1. InitCoreMember
+Initial core members of the `dao` organization.
+Authorized Roles: InitCoreMember, CoreMember.
 
-### 如何运行
-1. DAO组织的初始成员发布社区任务
-2. 通过参与社区任务，持有dao代币，可以申请加入DAO组织
-3. 加入DAO组织后，可以发布社区提案，提案如果被接受，可以获取一定代币收益。可以参与提案投票。
+#### 2. CoreMember
+Core members of the `dao` organization:
+Authorized Roles: Member.
+Rights:
+1. Publish community tasks.
+2. Distribute task rewards.
+3. Authorize regular community members.
+4. Close proposals.
+5. Modify proposal levels.
+
+#### 3. Member
+Regular members of the `dao` organization (need to hold `dao` tokens and apply for authorization from CoreMembers).
+Rights:
+1. Submit proposals.
+2. Claim proposal rewards.
+3. Participate in voting.
+
+### How to Run
+1. Initial members of the DAO publish community tasks.
+2. By participating in community tasks and holding `dao` tokens, one can apply to join the DAO organization.
+3. After joining the DAO organization, members can submit community proposals. If accepted, they can receive certain token rewards and participate in proposal voting.
 
 ## Object
 
-
-
 ### `Dao`
 
-包含有关DAO的信息，如成员数量和总供应量。
+Contains information about the DAO, such as the number of members and the total supply.
 
 ### `Treasury`
 
-DAO的资金库，用于存放资金。
+The treasury of the DAO, used to store funds.
 
 ### `Proposal`
 
-表示一个提案，包含提案的标题、描述、发起者以及投票情况等信息。
+Represents a proposal, including its title, description, initiator, and voting status.
 
 ### `VoteCap`
 
-记录投票信息，包括投票人、投票数目以及是否支持提案。
+Records voting information, including the voter, number of votes, and whether they support the proposal.
 
 ### `CommunityTask`
 
-社区任务，描述了一个需要完成的任务和相应的奖励。
+A community task describing a task that needs to be completed and the corresponding reward.
 
 ### `TaskRewardCap`
 
-任务奖励记录，包括奖励数额和接收者。
+Records task rewards, including the reward amount and recipient.
 
 ### `InitCoreCap`
 
-初始核心成员权限凭证。
+Authorization credential for initial core members.
 
 ### `CoreCap`
 
-核心成员权限凭证。
+Authorization credential for core members.
 
 ### `MemberCap`
 
-成员权限凭证。
-
-## 公共函数
-
+Authorization credential for members.

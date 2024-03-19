@@ -23,6 +23,7 @@ module dao::dao {
     const MAX_VOTES_ONE_TIME: u64 = 10;
     const TOTAL_SUPPLY:u64 = 100_000_000_000_000_000;
     const PROPOSAL_FEE:u64 = 5;
+    const LEVEL0_REWARD:u64 = 0;
     const LEVEL1_REWARD:u64 = 10;
     const LEVEL2_REWARD:u64 = 15;
     const LEVEL3_REWARD:u64 = 30;
