@@ -28,6 +28,8 @@ module dao::dao {
     const LEVEL2_REWARD:u64 = 15;
     const LEVEL3_REWARD:u64 = 30;
 
+    const PROPOSAL_DURATION: u64 = 7 * 24 * 60 * 60;
+
 
 
 
@@ -36,6 +38,12 @@ module dao::dao {
         id: UID,
         total_members: u64, //Total Number of DAO Members
         total_supply: Supply<T>, //Total Supply of DAO Tokens
+    }
+
+    struct ProposalDuration has key, store {
+        id: UID,
+        start_time: u64,
+        end_time: u64,
     }
 
     //Treasury of the DAO
@@ -226,6 +234,38 @@ module dao::dao {
         proposal.is_closed = true;
     }
 
+     // Function to set the proposal duration
+    public fun set_proposal_duration(core_cap: &CoreCap, proposal: &mut Proposal, ctx: &mut TxContext) {
+        check_corecap_role(core_cap, ctx);
+        assert!(!proposal.is_closed, EProposalClosed);
+
+        let start_time = tx_context::epoch(ctx);
+        let end_time = start_time + PROPOSAL_DURATION;
+
+        let proposal_duration = ProposalDuration {
+            id: object::new(ctx),
+            start_time,
+            end_time,
+        };
+
+        transfer::share_object(proposal_duration);
+    }
+
+    // Function to check if the proposal is still open for voting
+    public fun is_proposal_open(proposal: &Proposal, proposal_duration: &ProposalDuration): bool {
+        let current_time = tx_context::epoch(ctx);
+        current_time >= proposal_duration.start_time && current_time < proposal_duration.end_time
+    }
+
+
+    // Function to update the DAO token supply based on new member additions
+    public fun update_total_supply(dao: &mut Dao<DAO>, new_members: u64, treasury: &mut Treasury<DAO>, ctx: &mut TxContext) {
+        let new_supply = coin::mint_balance<DAO>(&mut treasury.supply, new_members * TOTAL_SUPPLY / dao.total_members);
+        let new_total_supply = coin::supply_value(&new_supply) + coin::supply_value(&dao.total_supply);
+        dao.total_supply = coin::create_supply(new_total_supply);
+        coin::destroy_supply(dao.total_supply);
+        dao.total_supply = new_total_supply;
+    }
 
     public fun vote(member_cap:&MemberCap, proposal:&mut Proposal, votes:u64, is_support:bool, coin:&mut Coin<DAO>, treasury:&mut Treasury<DAO>,ctx:&mut TxContext){
         //1. verify
